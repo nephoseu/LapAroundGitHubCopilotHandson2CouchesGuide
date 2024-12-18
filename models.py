@@ -28,7 +28,7 @@ class User:
     })
   
 class Snippet:
-  def __init__(self, id, ownerId, title, description=None, code, language, tags=None, createdAt=None, updatedAt=None):
+  def __init__(self, id, ownerId, title, code, language, description=None, tags=None, createdAt=None, updatedAt=None):
     self.id = id
     self.ownerId = ownerId
     self.title = title
