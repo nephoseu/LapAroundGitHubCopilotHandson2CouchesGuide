@@ -26,13 +26,15 @@ A Snippet has many Comments.
 
 database.py 
 -----------
-Create a python database class for managing SQLite in memory database operations.
-Class should have method which are wrapper around cursor methods
+Create a python database class for managing PostgreSQL database.
+Class should have method which are wrapper psypq2 connection.
+In consturctor class should get connection string to database
+Ensure that execute method uses with block to let object be context manager.
+Make sure to implement __enter__ and __exit__ method. In enter method call the self connect method.
 
 ---------
 user.py users
 
-"Create a Python Database class for managing SQLite in memory database operations.
 User table should have these properties: id (string | UUID): Unique identifier for the user.
 username (string, required, unique): Chosen username.
 name (string, optional): The user’s real name.
@@ -138,7 +140,7 @@ Also implement method for managing projects here is definition of those:
 
 For method implementation use the self.db which is wrapper around sqlite3 connection
 
-get_one_project(id) - Retrive project details
+get_one_project(id) - Retrive project details with project memberships
 insert_one_project(project) - Create a new Project
 update_project(project) - update project
 add_user_to_project(projectId,userId, role) - add use to the project (use ProjectMembership)

@@ -34,8 +34,39 @@ class ProjectService:
             ''')
 
     def get_one_project(self, id):
-        self.db.execute('SELECT * FROM Project WHERE id = %s', (id,))
-        return self.db.fetchone()
+        query = '''
+            SELECT p.*, pm.id,pm.userId, pm.role
+            FROM Project p
+            LEFT JOIN ProjectMembership pm ON p.id = pm.projectId
+            WHERE p.id = %s
+        '''
+        self.db.execute(query, (id,))
+    
+        rows = self.db.fetchall()
+
+        if not rows:
+            return None 
+           
+        project = {
+            "id": rows[0][0],
+            "ownerId": rows[0][1],
+            "name": rows[0][2],
+            "description": rows[0][3],
+            "repoUrl": rows[0][4],
+            "createdAt": rows[0][5],
+            "updatedAt": rows[0][6],
+            "members": []
+        }
+        
+        for row in rows:
+            if row[7]:
+                project["members"].append({
+                    "id": row[7],
+                    "userId": row[8],
+                    "role": row[9]
+                })
+        
+        return project
 
     def insert_one_project(self, project):
         with self.db:
