@@ -9,7 +9,7 @@ from fastapi import Body
 
 app = FastAPI()
 
-connection_string = "postgresql://team1:Kvh4eFD1!@ghcpchmgmt.postgres.database.azure.com:5432/team1"
+connection_string = "YOUR_CONNECTION_STRING"
 # Initialize the Database object
 db = Database(connection_string)
 

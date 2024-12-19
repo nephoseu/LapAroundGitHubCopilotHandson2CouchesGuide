@@ -145,6 +145,8 @@ insert_one_project(project) - Create a new Project
 update_project(project) - update project
 add_user_to_project(projectId,userId, role) - add use to the project (use ProjectMembership)
 
+For the get_one_project(id) - 
+
 ---------------------------------------------------
 app.py 
 
